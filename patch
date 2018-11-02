@@ -1,0 +1,27 @@
+diff --git a/plugin/compiledb-path.vim b/plugin/compiledb-path.vim
+index 3e858d3..84b02d1 100644
+--- a/plugin/compiledb-path.vim
++++ b/plugin/compiledb-path.vim
+@@ -23,6 +23,10 @@ def debugLog(msg):
+   sys.stdout.flush()
+ 
+ def searchForIncludePaths(compileCommandsPath, failIfNotFound):
++  try:
++    return searchForIncludePaths._cache[compileCommandsPath]
++  except KeyError:
++    pass
+   result = []
+   try:
+     jsonData = open(compileCommandsPath)
+@@ -47,9 +51,10 @@ def searchForIncludePaths(compileCommandsPath, failIfNotFound):
+   except IOError:
+     if failIfNotFound:
+       raise
+-  debugLog(result)
++  searchForIncludePaths._cache[compileCommandsPath] = result
+   return result
+ 
++searchForIncludePaths._cache = {}
+ compileCommandsPath = vim.eval("a:compileCommandsPath")
+ failIfNotFound = vim.eval("a:failIfNotFound") == 'true';
+ includePaths = searchForIncludePaths(compileCommandsPath, failIfNotFound)

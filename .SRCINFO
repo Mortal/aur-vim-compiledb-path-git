@@ -1,0 +1,17 @@
+pkgbase = vim-compiledb-path-git
+	pkgdesc = Add C++ include directories from compile_commands.json to Vim include path
+	pkgver = v0.0.1.g589fa99
+	pkgrel = 1
+	url = https://github.com/martong/vim-compiledb-path
+	arch = any
+	license = custom
+	makedepends = git
+	depends = vim
+	depends = python2
+	source = git://github.com/martong/vim-compiledb-path
+	source = patch
+	md5sums = SKIP
+	md5sums = 296648abd2c85c23e23b36e4a9c67135
+
+pkgname = vim-compiledb-path-git
+
